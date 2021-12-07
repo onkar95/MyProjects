@@ -12,6 +12,7 @@ export default function Settings() {
   const [success, setSuccess] = useState(false);
 
   const { user, dispatch } = useContext(Context);
+  // const PF = "https://my-projects-portfoli.herokuapp.com/images/"
   const PF = "http://localhost:5000/images/"
 
   const handleSubmit = async (e) => {
@@ -30,11 +31,12 @@ export default function Settings() {
       data.append("file", file);
       updatedUser.profilePic = filename;
       try {
-        await axios.post("/upload", data);
+        // await axios.post("https://my-projects-portfoli.herokuapp.com/api/upload", data);
+        await axios.post("http://localhost:5000/api/upload", data);
       } catch (err) {}
     }
     try {
-      const res = await axios.put("/users/" + user._id, updatedUser);
+      const res = await axios.put("http://localhost:5000/api/users/" + user._id, updatedUser);
       setSuccess(true);
       dispatch({ type: "UPDATE_SUCCESS", payload: res.data });
     } catch (err) {
@@ -45,11 +47,11 @@ export default function Settings() {
     <div className="settings">
       <div className="settingsWrapper">
         <div className="settingsTitle">
-          <span className="settingsUpdateTitle">Update Your Account</span>
-          <span className="settingsDeleteTitle">Delete Account</span>
+          <span className="settingsUpdateTitle"> Your Account</span>
+          {/* <span className="settingsDeleteTitle">Delete Account</span> */}
         </div>
         <form className="settingsForm" onSubmit={handleSubmit}>
-          <label>Profile Picture</label>
+          {/* <label>Profile Picture</label>
           <div className="settingsPP">
             <img
               src={file ? URL.createObjectURL(file) : PF+user.profilePic}
@@ -64,27 +66,30 @@ export default function Settings() {
               style={{ display: "none" }}
               onChange={(e) => setFile(e.target.files[0])}
             />
-          </div>
+          </div> */}
           <label>Username</label>
           <input
             type="text"
             placeholder={user.username}
+            disabled={true}
             onChange={(e) => setUsername(e.target.value)}
           />
           <label>Email</label>
           <input
             type="email"
             placeholder={user.email}
+            disabled={true}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <label>Password</label>
+          {/* <label>Password</label>
           <input
             type="password"
+            disabled={true}
             onChange={(e) => setPassword(e.target.value)}
-          />
-          <button className="settingsSubmit" type="submit">
+          /> */}
+          {/* <button className="settingsSubmit" type="submit">
             Update
-          </button>
+          </button> */}
           {success && (
             <span
               style={{ color: "green", textAlign: "center", marginTop: "20px" }}

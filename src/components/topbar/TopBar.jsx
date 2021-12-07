@@ -2,10 +2,11 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../../context/Context";
 import "./topbar.css";
+import profile from "../../images/Profile.png"
 
 export default function TopBar() {
   const { user, dispatch } = useContext(Context);
-  const PF = "http://localhost:5000/images/"
+  const PF = "https://my-projects-portfoli.herokuapp.com/images/"
 
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" });
@@ -49,7 +50,8 @@ export default function TopBar() {
       <div className="topRight">
         {user ? (
           <Link to="/settings">
-            <img className="topImg" src={PF+user.profilePic} alt="" />
+            {/* <img className="topImg" src={PF+user.profilePic} alt="" /> */}
+            <img className="topImg" src={profile} alt="" />
           </Link>
         ) : (
           <ul className="topList">

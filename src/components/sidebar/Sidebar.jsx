@@ -6,12 +6,12 @@ import { Context } from "../../context/Context";
 import blog from "../../images/download.png"
 export default function Sidebar() {
   const [cats, setCats] = useState([]);
-  const PF = "http://localhost:5000/images/"
+  const PF = "https://my-projects-portfoli.herokuapp.com/api/images/"
   const { user, dispatch } = useContext(Context);
 
   useEffect(() => {
     const getCats = async () => {
-      const res = await axios.get("/categories");
+      const res = await axios.get("https://my-projects-portfoli.herokuapp.com/api/categories");
       setCats(res.data);
     };
     getCats();
@@ -23,7 +23,7 @@ export default function Sidebar() {
         {/* <img  src={PF+user.profilePic} alt="" /> */}
         <img  src={blog} alt="" />
         <p>
-          This is the simple blog site created for user to write their blogs ,publish it and user can also upload the images of the blog as well as his/her profile picture and can update his/her profile at any time 
+          This is the simple blog site created for user to write their blogs ,publish it and user can also upload the images of the blog and can update the blog any time at any time 
         </p>
       </div>
       <div className="sidebarItem">
